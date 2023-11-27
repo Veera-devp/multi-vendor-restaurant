@@ -75,8 +75,11 @@ WSGI_APPLICATION = "foodvendor.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "food_db",
+        "USER":'postgres',
+        "PASSWORD":"raghava@2003",
+        "HOST":"localhost",
     }
 }
 
