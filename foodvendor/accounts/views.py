@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .forms import UserForm
 from .models import User
 from django.contrib import messages
+from vendor.forms import VendorForm
 # Create your views here.
 
 def registerUser(request):
@@ -39,4 +40,11 @@ def registerUser(request):
 
 
 def registerVendor(request):
-      return render(request,'accounts/registerVendor.html')
+      form = UserForm()
+      v_form = VendorForm()
+
+      context = {
+            'form':form,
+            'v_form':v_form,
+      }
+      return render(request,'accounts/registerVendor.html',context)
