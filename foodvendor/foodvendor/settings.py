@@ -147,5 +147,6 @@ MESSAGE_TAGS = {
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT',cast=int)
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = 'pxpf vwdz nkrj dduz'
+EMAIL_HOST_PASSWORD = 'gfjc mfoo yxij gkuy '
 EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'foodOnline Marketplace <2000030902cse@gmail.com>'
