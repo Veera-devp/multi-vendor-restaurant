@@ -1,6 +1,6 @@
 {% autoescape off %}
 
 Hi {{ user.first_name }},
-http://{{ domain }}{% url 'activate' uidbd64=uid token=token %}
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
 
 {% endautoescape %}

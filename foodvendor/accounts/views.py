@@ -50,6 +50,7 @@ def registerUser(request):
 
             
             send_verification_email(request, user)
+            
             messages.success(request, 'Your account has been registered sucessfully!')
             return redirect('registerUser')
         else:
