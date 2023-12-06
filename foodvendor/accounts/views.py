@@ -4,7 +4,7 @@ from .forms import UserForm
 from .models import User,UserProfile
 from django.contrib import messages,auth
 from vendor.forms import VendorForm
-from .utils import detectUser
+from .utils import detectUser,send_verification_email
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.exceptions import PermissionDenied
 # Create your views here.
@@ -27,7 +27,7 @@ def check_role_customer(user):
 def registerUser(request):
     if request.user.is_authenticated:
         messages.warning(request, 'You are already logged in!')
-        return redirect('myAccount')
+        return redirect('dashboard')
     elif request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
@@ -47,6 +47,9 @@ def registerUser(request):
             user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email, password=password)
             user.role = User.CUSTOMER
             user.save()
+
+            
+            send_verification_email(request, user)
             messages.success(request, 'Your account has been registered sucessfully!')
             return redirect('registerUser')
         else:
@@ -83,6 +86,9 @@ def registerVendor(request):
             vendor.user_profile = user_profile
             vendor.save()
 
+            # Send verification email
+            
+            #send_verification_email(request, user)
 
             messages.success(request, 'Your account has been registered sucessfully! Please wait for the approval.')
             return redirect('registerVendor')
@@ -99,6 +105,10 @@ def registerVendor(request):
     }
 
     return render(request, 'accounts/registerVendor.html', context)
+
+
+def activate(request,uidb64,token):
+    return
 
 
 def login(request):
