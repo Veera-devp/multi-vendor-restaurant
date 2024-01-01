@@ -73,7 +73,10 @@ def fooditems_by_category(request, pk=None):
     context = {
         'fooditems': fooditems,
         'category': category,
+        'food_id': None, 
     }
+    if fooditems:
+        context['food_id'] = fooditems[0].id 
     return render(request, 'vendor/fooditems_by_category.html', context)
 
 
